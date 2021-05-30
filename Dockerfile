@@ -37,7 +37,7 @@ RUN conda install pytorch=1.5.1 torchvision=0.6.1 cudatoolkit=10.1 -c pytorch
 RUN pip install simplejson==3.17.0 av==8.0.1 psutil==5.7.0 opencv-python==4.4.0.42 && \
 	pip install Cython==0.29.19 && \
 	pip install pycocotools==2.0.0
-RUN pip install -U 'git+https://github.com/facebookresearch/fvcore.git' 
+#RUN pip install -U 'git+https://github.com/facebookresearch/fvcore.git' 
 RUN pip install transformers==4.6.1
 RUN pip install sentencepiece==0.1.95
 RUN pip install pytorch_pretrained_bert==0.6.2
