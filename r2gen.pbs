@@ -1,0 +1,34 @@
+#!/bin/bash
+#PBS -P RDS-FEI-CVML-RW
+#PBS -N r2gen
+#PBS -l select=1:ncpus=1:mem=16gb:ngpus=1
+#PBS -q defaultQ
+#PBS -M stephanieshen@foxmail.com
+#PBS -m abe
+
+#Load modules\
+module load singularity/3.2.1
+module load cuda/10.1.105
+
+
+cd $PBS_O_WORKDIR
+
+
+singularity exec --nv -B $PBS_O_WORKDIR:/project $PBS_O_WORKDIR/r2gen.img /bin/bash -c "cd /project/CVML/test1 && python main.py \
+--image_dir data/iu_xray/images/ \
+--ann_path data/iu_xray/annotation.json \
+--dataset_name iu_xray \
+--max_seq_length 60 \
+--threshold 3 \
+--batch_size 16 \
+--epochs 100 \
+--save_dir results/iu_xray \
+--step_size 50 \
+--gamma 0.1 \
+--pretrained models/gcnclassifier_v2_ones3_t0v1t2_lr1e-6_e80.pth \
+--seed 3247671 \
+--monitor_metric 'BLEU_1' \
+--rm_num_slots 24 \
+--num_workers 2 \
+--num_layers 12 \
+--epochs 200"
