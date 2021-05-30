@@ -32,8 +32,7 @@ From: nbutter/pyfastslow
     singularity exec --nv pyslowfast.img python
 
 %post
-mkdir /project /scratch
-touch /usr/bin/nvidia-smi
+
 
 %environment
 export PATH=/root/miniconda3/bin:$PATH
