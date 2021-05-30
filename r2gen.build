@@ -32,7 +32,10 @@ From: nbutter/pyfastslow
     singularity exec --nv pyslowfast.img python
 
 %post
-
+    touch /usr/bin/nvidia-smi
+    pip install transformers==4.6.1
+    pip install sentencepiece==0.1.95
+    pip install pytorch_pretrained_bert==0.6.2
 
 %environment
 export PATH=/root/miniconda3/bin:$PATH
